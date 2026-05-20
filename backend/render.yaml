@@ -6,7 +6,7 @@ services:
     dockerContext: .
     envVars:
       - key: CORS_ORIGINS
-        value: https://automated-ai-model-compression.vercel.app
+        value: http://localhost:5173,https://automated-ai-model-compression.vercel.app
       - key: MAX_FILE_SIZE_MB
         value: "500"
       - key: LOG_LEVEL
