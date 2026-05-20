@@ -15,6 +15,8 @@ class JobStatus(str, Enum):
 
 
 class CompressionRequest(BaseModel):
+    model_config = {"protected_namespaces": ()}
+
     quantization: bool = Field(default=True)
     quantization_backend: str = Field(default="fbgemm")
     pruning: bool = Field(default=True)
