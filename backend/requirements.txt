@@ -1,0 +1,10 @@
+# Backend Dependencies
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+torch==2.3.0+cpu
+torchvision==0.18.0+cpu
+Pillow==10.4.0
+numpy==1.26.4
+pydantic==2.8.0
+python-dotenv==1.0.1
