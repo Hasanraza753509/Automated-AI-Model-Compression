@@ -4,6 +4,7 @@ FastAPI Application Entry Point.
 Configures CORS, logging, and mounts the compression router.
 """
 
+import os
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,14 +26,17 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# CORS — Allow frontend origins
+# CORS — Build origins from env or use dev defaults
+_default_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+_env_origins = os.getenv("CORS_ORIGINS", "")
+_origins = [o.strip() for o in _env_origins.split(",") if o.strip()] if _env_origins else _default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",      # Vite dev server
-        "http://localhost:3000",      # Fallback dev
-        "https://*.vercel.app",       # Production frontend
-    ],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
